@@ -12,7 +12,7 @@ public class SeleniumTest {
 
     @Test
             public void testSelenium() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\Alisa\\Desktop\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\Alisa\\IdeaProjects\\qa.project\\src\\main\\resources\\chromedriver.exe");
         WebDriver w=new ChromeDriver();
 //        w.manage().window().maximize();
         w.get("https://youtube.com");
