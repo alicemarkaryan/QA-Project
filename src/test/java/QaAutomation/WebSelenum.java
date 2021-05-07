@@ -23,27 +23,33 @@ public class WebSelenum {
         WebElement downloadelem=driver.findElement(By.xpath("//*[contains(text(),'Downloads')]"));
         downloadelem.click();
         Thread.sleep(3000);
-        WebElement versionelem=driver.findElement(By.xpath("//*[contains(text(),'3.141.59')]"));
+            WebElement versionelem=driver.findElement(By.xpath("//*[@class='right']//p[1]//a[1]"));
         String versionSelem=versionelem.getText();
+        String lastVersion="3.141.59";
         System.out.println(versionSelem);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertTrue(this.checkVersion(versionSelem,lastVersion),"version doesn't match");
         Thread.sleep(2000);
         WebElement search=driver.findElement(By.xpath("//input[@id='gsc-i-id1']"));
         search.sendKeys("selenium"+ Keys.ENTER);
         Thread.sleep(5000);
-       List<WebElement> selemElem=driver.findElements(By.xpath("//*[contains(text(),'Selenium')]"));
-             //  "//*[contains(text(),'Selenium')]"));
+       List<WebElement> selemElem=driver.findElements(By.xpath("//*[@class='gs-webResult gs-result']"));
+       //"//*[contains(text(),'Selenium')]"
+            //*[@class='gs-webResult gs-result']")
         //"//a[@class='gs-title']"
-       Thread.sleep(3000);
-        SoftAssert softAssert = new SoftAssert();
+        Thread.sleep(3000);
 
-       for (WebElement e: selemElem){
-           String selemtext=e.getText();
-           String selemln=selemtext.replace("\n","");
+
+       for (WebElement e: selemElem) {
+           String selemtext = e.getText();
            System.out.println(selemtext);
-           softAssert.assertTrue(this.checkSelen(selemtext,"Selenium"),"word doesn't match");
+
+       String word="selenium";
+   softAssert.assertTrue(this.checkSelen(selemtext, word), "word doesn't match");
+
        }
         Thread.sleep(5000);
-        softAssert.assertTrue(this.checkVersion(versionSelem,"3.141.59"), "Version doesn't equal 3.141.59");
+
         softAssert.assertAll();
         driver.quit();
     }
@@ -55,4 +61,8 @@ public class WebSelenum {
     public boolean checkSelen(String a, String b){
         return a.equalsIgnoreCase(b);
     }
+
+
+
+
 }
