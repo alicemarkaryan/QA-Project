@@ -36,7 +36,7 @@ public class GreetzWeb {
         WebElement log = wait.until(ExpectedConditions.elementToBeClickable(logelem));
         log.click();
         By passelem=By.xpath("//span[@class='b-list--item-subject']");
-         WebElement pass=wait.until(ExpectedConditions.elementToBeClickable(passelem));
+         WebElement pass=driver.findElement(passelem);
         pass.click();
         By loginElem=(By.xpath("//input[@type='email']"));
           WebElement login=wait.until(ExpectedConditions.elementToBeClickable(loginElem));
@@ -55,7 +55,7 @@ public class GreetzWeb {
       String flowers="Bloemen";
         By flower1Elem=By.xpath("//div[@class='content-menu--container']//*[text()= '" + flowers + "']");
 
-        WebElement flower1=wait.until(ExpectedConditions.elementToBeClickable(flower1Elem));
+        WebElement flower1=wait.until(ExpectedConditions.visibilityOfElementLocated(flower1Elem));
         action.moveToElement(flower1).perform();
         String Boeket="Boeketten";
         By flow=By.xpath("//*[@href='/bloemen/gemengde-boeketten']");
@@ -72,7 +72,7 @@ public class GreetzWeb {
            By allProdsLoc=By.className("b-products-grid__item-preview");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(allProdsLoc,30));
            By produ=By.xpath("//*[@class='b-products-grid__item']");
-        List<WebElement> product=driver.findElements(produ);
+        List<WebElement> product=wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(produ,20));
         Random rand=new Random();
         int result=rand.nextInt(product.size());
         WebElement flower=product.get(result);
@@ -90,7 +90,7 @@ public class GreetzWeb {
 
         By favselec=By.xpath(".//div[@class='b-favourite']");
         wait.until(ExpectedConditions.elementToBeClickable(favselec));
-           WebElement Fav=flower.findElement(favselec);
+           WebElement Fav=wait.until(ExpectedConditions.elementToBeClickable(favselec));
            Fav.click();
            By goFavSelec=By.xpath("//*[@data-qa-ref='profile-icon']");
            WebElement goFav=driver.findElement(goFavSelec);
@@ -129,7 +129,7 @@ public class GreetzWeb {
         By allProdsLoc=By.className("b-products-grid__item-preview");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(allProdsLoc,30));
         By produ=By.xpath("//*[@class='b-products-grid__item']");
-        List<WebElement> product12=driver.findElements(produ);
+        List<WebElement> product12=wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(produ,20));
         wait.until(ExpectedConditions.elementToBeClickable(produ));
         Random random=new Random();
         int result = random.nextInt(product12.size());
@@ -158,7 +158,7 @@ public class GreetzWeb {
         double priceTwo=Double.parseDouble(price5);
         System.out.println(price5);
         By goo=By.xpath("//*[@data-qa-ref='profile-icon']");
-        WebElement goFavv=wait.until(ExpectedConditions.elementToBeClickable(goo));
+        WebElement goFavv=driver.findElement(goo);
         goFavv.click();
         WebElement goFav1=driver.findElement(By.xpath("//*[text()='Favorieten']"));
         goFav1.click();
@@ -166,9 +166,8 @@ public class GreetzWeb {
         WebElement fav111=wait.until(ExpectedConditions.elementToBeClickable(faa));
         fav111.click();
         By naa=By.xpath("//h1[@ng-bind='gift.title']");
-        WebElement name=wait.until(ExpectedConditions.elementToBeClickable(naa));
+        WebElement name=driver.findElement(naa);
         String namee=name.getText();
-        System.out.println(namee);
         By prii=By.xpath("//*[@class='price-normal']");
         WebElement price0=wait.until(ExpectedConditions.elementToBeClickable(prii));
         String price1=price0.getText();
@@ -186,7 +185,7 @@ public class GreetzWeb {
     public void aftermethod() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 20);
         By un=By.xpath("//*[@class='page-detail__favorite']");
-        WebElement unfav=wait.until(ExpectedConditions.elementToBeClickable(un));
+        WebElement unfav=driver.findElement(un);
         unfav.click();
         Thread.sleep(5000);
 
@@ -196,7 +195,7 @@ public class GreetzWeb {
     public void AfterClass() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver,20);
         By log=By.xpath("//a[@class='page-header__navigation-item item-user']");
-        WebElement logout =wait.until(ExpectedConditions.elementToBeClickable(log));
+        WebElement logout =driver.findElement(log);
         logout.click();
         By exi=By.xpath("//span[@class='b-list--item-icon-primary']");
         WebElement exit = wait.until(ExpectedConditions.elementToBeClickable(exi));

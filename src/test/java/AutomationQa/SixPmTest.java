@@ -39,18 +39,18 @@ public class SixPmTest {
         String namee = name.getText();
         Thread.sleep(2000);
         dress.click();
-//        Thread.sleep(5000);
-//        List<WebElement> price1 = driver.findElements(By.cssSelector("#productRecap div span[aria-hidden=true]"));
-//        WebElement price11 = price1.get(1);
-//        String price111 = price11.getText();
-//        WebElement name1 = driver.findElement(By.cssSelector("#overview div > span:nth-child(2)"));
-//        String name11 = name1.getText();
-//        WebElement brand1 = driver.findElement(By.cssSelector("span[itemprop=name]"));
-//        String brand11 = brand1.getText();
-//        Thread.sleep(1000);
-//        Assert.assertEquals(namee, name11, "fail name");
-//        Assert.assertEquals(brandd, brand11, "fail brand11");
-//        Assert.assertEquals(pricee, price111, "fail price");
+        Thread.sleep(5000);
+        List<WebElement> price1 = driver.findElements(By.cssSelector("#productRecap div span[aria-hidden=true]"));
+        WebElement price11 = price1.get(1);
+        String price111 = price11.getText();
+        WebElement name1 = driver.findElement(By.cssSelector("#overview div > span:nth-child(2)"));
+        String name11 = name1.getText();
+        WebElement brand1 = driver.findElement(By.cssSelector("span[itemprop=name]"));
+        String brand11 = brand1.getText();
+        Thread.sleep(1000);
+        Assert.assertEquals(namee, name11, "fail name");
+        Assert.assertEquals(brandd, brand11, "fail brand11");
+        Assert.assertEquals(pricee, price111, "fail price");
         driver.quit();
 
 
