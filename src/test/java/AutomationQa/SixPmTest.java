@@ -1,10 +1,13 @@
-package QaAutomation;
+package AutomationQa;
 
+import net.bytebuddy.dynamic.DynamicType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,32 +25,34 @@ public class SixPmTest {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.6pm.com");
-        Thread.sleep(2000);
-        WebElement elem = driver.findElement(By.id("searchAll"));
+        WebDriverWait wait=new WebDriverWait(driver,20);
+        By elemSel=By.id("searchAll");
+        WebElement elem = wait.until(ExpectedConditions.elementToBeClickable(elemSel));
         elem.sendKeys("dresses" + Keys.ENTER);
-        Thread.sleep(1000);
-        List<WebElement> product = driver.findElements(By.cssSelector("#searchPage article"));
+        By productSel=By.cssSelector("#searchPage article");
+        List<WebElement> product = wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(productSel,20));
         Random random = new Random();
         int result = random.nextInt(product.size());
         WebElement dress = product.get(result);
-        Thread.sleep(2000);
-        WebElement price = dress.findElement(By.cssSelector("span[itemprop=price]"));
+        By priceSelec=By.cssSelector("span[itemprop=price]");
+        WebElement price = dress.findElement(priceSelec);
         String pricee = price.getText();
         WebElement brand = dress.findElement(By.cssSelector("dd[itemprop=brand]"));
         String brandd = brand.getText();
         WebElement name = dress.findElement(By.cssSelector("dd[itemprop=name]"));
         String namee = name.getText();
-        Thread.sleep(2000);
+
+        wait.until(ExpectedConditions.elementToBeClickable(dress));
         dress.click();
-        Thread.sleep(5000);
-        List<WebElement> price1 = driver.findElements(By.cssSelector("#productRecap div span[aria-hidden=true]"));
+        By price1Selec=By.cssSelector("#productRecap div span[aria-hidden=true]");
+        List<WebElement> price1 = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(price1Selec));
         WebElement price11 = price1.get(1);
         String price111 = price11.getText();
         WebElement name1 = driver.findElement(By.cssSelector("#overview div > span:nth-child(2)"));
         String name11 = name1.getText();
         WebElement brand1 = driver.findElement(By.cssSelector("span[itemprop=name]"));
         String brand11 = brand1.getText();
-        Thread.sleep(1000);
+
         Assert.assertEquals(namee, name11, "fail name");
         Assert.assertEquals(brandd, brand11, "fail brand11");
         Assert.assertEquals(pricee, price111, "fail price");
