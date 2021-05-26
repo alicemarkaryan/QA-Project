@@ -15,6 +15,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver){
         this.driver=driver;
+
     }
 
     public void searchJob(){
